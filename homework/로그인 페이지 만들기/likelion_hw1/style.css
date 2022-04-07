@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,500&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	background: black;
+}
+
+.container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	min-height: 100vh;
+	padding: 0 100px;
+	overflow: hidden;
+	gap: 100px;
+}
+
+/* content-container */
+.content-container {
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+	max-width: 750px;
+}
+.content-container img {
+    width: 200px;
+    margin: -30px 0 20px;
+}
+.content-container h2 {
+	color: white;
+	font-size: 60px;
+	text-transform: uppercase;
+}
+
+.content-container p {
+	font-size: 20px;
+	color: white;
+}
+.selecttrack {
+	display: flex;
+	margin: 30px 0;
+}
+.track {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: #fff;
+	margin-right: 20px;
+	font-size: 48px;
+	min-width: 110px;
+	min-height: 200px;
+	font-weight: 700;
+	padding: 80px 110px;
+	border-radius: 4px;
+	text-align: center;
+}
+.track span {
+	margin-top: -10px;
+	font-size: 22px;
+	font-weight: 600;
+	color: #100b0b;
+}
+
+/* login-container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: center;
+	width: 50%;
+}
+
+.title {
+	font-size: 2.2rem;
+	color: white;
+	margin-bottom: 20px;
+}
+.input-field {
+	max-width: 350px;
+	width: 100%;
+	background-color: #f0f0f0;
+	margin: 10px 0;
+	height: 55px;
+	border-radius: 55px;
+	display: grid;
+	grid-template-columns: 15% 85%;
+	padding: 0 0.4rem;
+	position: relative;
+}
+
+.input-field i {
+	text-align: center;
+	line-height: 55px;
+	color: #acacac;
+	font-size: 1.1rem;
+}
+
+.input-field input {
+	background: none;
+	outline: none;
+	border: none;
+	line-height: 1;
+	font-weight: 600;
+	font-size: 1.1rem;
+	color: #333;
+}
+
+.input-field input::placeholder {
+	color: #aaa;
+	font-weight: 500;
+}
+
+.login-btn {
+	width: 250px;
+	background-color: #f39926;
+	border: none;
+	outline: none;
+	height: 50px;
+	border-radius: 50px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin: 20px 0;
+	cursor: pointer;
+	font-size: 20px;
+}

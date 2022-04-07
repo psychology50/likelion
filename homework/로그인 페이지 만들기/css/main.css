@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+body {
+    background-color: #000000;
+}
+
+#wrap {
+    width: 1600px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0px 20px;
+    padding-top: 120px;
+}
+
+/* left-side */
+#left-side {
+    width: 800px;
+    height: 700px;
+    padding-left: 120px;
+    box-sizing: border-box;
+    float: left;
+}
+
+#header {
+    width: 800px;
+    height: 125px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+#contents {
+    width: 518px;
+    height: 170px;
+    color: #ffffff;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+#contents > h1 {
+    font-size: 45px;
+    font-style: italic;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+#contents div p {
+    line-height: 150%;
+    font-size: 17px;
+}
+
+#footer {
+    width: 600px;
+    height: 250px;
+    float: left;
+}
+#footer > div {
+    position: relative;
+    width: 157px;
+    height: 170px;
+    float: left;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 49px;
+    margin-left: 15px;
+    background-color: #ffffff;
+}
+#footer > div#p-d > p {
+    position: absolute;
+    text-align: center;
+    font-size: 19px;
+    font-style: italic;
+    font-weight: bold;
+    left: 28%;
+    top: 25%;    
+}
+#footer > div#front-end > p,
+#footer > div#back-end > p {
+    position: absolute;
+    text-align: center;
+    font-size: 19px;
+    font-style: italic;
+    font-weight: bold;
+    left: 25%;
+    top: 40%;    
+}
+#footer div:hover {
+    transform: scale(1.1);
+}
+
+/* right-side */
+#right-side {
+    width: 800px;
+    height: 700px;
+    padding-right: 100px;
+    box-sizing: border-box;
+    float: left;
+}
+#right-side > div {
+    position: relative;
+    margin: 5px auto;
+    margin-top: 180px;
+    width: 350px;
+    height: 300px;
+    box-sizing: border-box;
+}
+#right-side > div > header {
+    margin: 0 auto;
+    width: 96px;
+    height: 32px;
+}
+#login {
+    position: absolute;
+    top: 60px;
+    width: 350px;
+    height: 250px;
+}
+.input-box {
+    position: relative;
+    width: 270px;
+    margin: 5px auto;
+}
+.input-box label {
+    position: absolute;
+    width: 190px;
+    top: 1px;
+    left: 1px;
+    padding: .8em 1.2em;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 13px;
+    color: #999;
+    cursor: text;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    padding: .9em .5em;
+    font-style: italic;
+    font-family: inherit;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    border: none;
+    outline-style: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input[type="submit"] {
+    background-color: rgb(243, 150, 11);
+    border-radius: 50px;
+    margin-top: 13px;
+    margin-left: 85px;
+    font-weight: bold;
+    font-size: 14px;
+    width: 185px;
+    height: 37px;
+    color: #ffffff;
+    border: none;
+}
