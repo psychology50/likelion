@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+@font-face {
+    src: url("./font/Cafe24Shiningstar.ttf");
+    font-family: "myFont";
+}
+
+@media screen and (max-width: 760px) {
+    .messagebox {
+        width: 300px;
+        padding: 20px;
+    }
+    .character {
+        margin: 50px auto 0px auto;
+    }
+    .hone {
+        font-size: 22px;
+    }
+    .htwo {
+        font-size: 22px;
+    }
+    .messagebox {
+        margin-bottom: 50px;
+    }
+    .envelope {
+        margin: 50px auto 0px auto;
+    }   
+}  
+
+.envelope {
+    width: 150px;
+    height: 100px;
+
+    background-image: url('../image/letter.jpg');
+    background-size: cover;
+    background-position: center;
+
+    margin: 100px auto 0px auto;
+
+    cursor: pointer;
+}
+
+.envelope-title {
+    font-family: 'myFont';
+    color: black;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.envelope-msg {
+    color: black;
+    text-align: center;
+}
+
+.letter-close {
+    display: block;
+}
+
+.letter-open {
+    display: none;
+}
+
+.character {
+    background-color: white;
+
+    width: 200px;
+    height: 200px;
+
+    background-image: url('../image/lion.jpg');
+    background-size: cover;
+    background-position: center;
+
+    margin: 30px auto 0px auto;
+
+    border-radius: 100px;
+
+    border: 5px solid white;
+    box-shadow: 0px 0px 10px 0px white;
+}
+
+.hone {
+    color: color;
+    text-align: center;
+
+    margin-top: 30px;
+}
+
+.htwo {
+    color: color;
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.messagebox {
+    background-color: ivory;
+
+    width: 550px;
+    margin: auto;
+
+    color: burlywood;
+
+    padding: 30px;
+
+    font-size: 15px;
+    line-height: 30px;
+
+    box-shadow: 0px 0px 10px 0px white;
+}
+
+.from {
+    text-align: right;
+    margin-bottom: 0px;
+}
+
+.share {
+    margin: 0 auto;
+}
