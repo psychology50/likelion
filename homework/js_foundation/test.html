@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1-1</li>
+        <li>1-2</li>
+    </ul>
+    <ul>
+        <li>2-1</li>
+        <li>2-2</li>
+    </ul>
+    <script>
+        let likelion = {
+            1: {"name" : "김대연", "mbti" : "ENFJ"},
+            2: {"name" : "김지혜", "mbti" : "INTJ"},
+            3: {"name" : "조나원", "mbti" : "ENFP"},
+        }
+        
+        let mbti = "ENFP"
+        console.log(mbti)
+        
+        for (var i in likelion) {
+    if (likelion[i]["mbti"] == mbti) {
+        document.write(mbti + "\n")
+        document.write(likelion[i]["name"])
+    }
+}
+</script>
+</body>
+</html>
