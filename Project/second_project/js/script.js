@@ -22,6 +22,7 @@ stackUp() 이전에 객체 배열을 하나씩 접근하여 값을 호출하는 
 특정 조건에 해당하는 노드만 탐색할 때, 객체를 갱신할 것이다.
 그렇다면 이 때 객체가 새로운 값에 의해 덮어씌워지게 되는데
 다시 모든 노드를 화면에 띄우려면 객체를 백업해두어야 하는가???
+flag를 사용하자.. 객체는 남겨두고 isComplete 값에 따라 화면에 띄울지 말지 결정한다.
 */
 
 class Scheduler {
@@ -56,12 +57,10 @@ class Scheduler {
 
         this.completeAllBtn.addEventListener('click', ()=>this.completeAll());
         // btn-group
-        this.showAll.addEventListener('click', );
-        /*
-        this.showRemain.addEventListener('click', );
-        this.showDone.addEventListener('click', );
-        this.clearAll.addEventListener('click', );
-        */
+        this.showAll.addEventListener('click', ()=>this.bifurcation());
+        this.showRemain.addEventListener('click', ()=>this.bifurcation(1));
+        this.showDone.addEventListener('click', ()=>this.bifurcation(2));
+        this.clearAll.addEventListener('click', ()=>this.clearParant());
     }
 
     setInputValue(data) {
@@ -80,11 +79,20 @@ class Scheduler {
         this.inputValue.value = ""; // 버퍼 비우기
     }
 
-    bifurcation() { // block을 쌓기 전에 어떤 노드만 쌓을 건지 분기점 체크
-        this.todoList.innerHTML = null;
+    bifurcation(flag = 0) { // block을 쌓기 전에 어떤 노드만 쌓을 건지 분기점 체크
+        this.todoList.innerHTML = null; // ul 태그 안의 모든 li 제거 (안 하면 계속 쌓인다)
 
-        const tmp = this.get_all_node();
-        tmp.forEach(param => this.buildList(param));
+        let tmp = [];
+        if (flag == 0) { // all
+            tmp = this.get_all_node();
+            tmp.forEach(param => this.buildList(param));
+        } else if (flag == 1) { // remain
+            tmp = this.get_all_node().filter(param => param.isComplete == false);
+            tmp.forEach(param => this.buildList(param));
+        } else { // done
+            tmp = this.get_all_node().filter(param => param.isComplete == true);
+            tmp.forEach(param => this.buildList(param));
+        }
     }
 
     buildList(node) {
@@ -92,7 +100,10 @@ class Scheduler {
         block.classList.add('todo-item'); // <li class="todo-item"></li>
         
         if(node.isComplete) block.classList.add('checked');
-
+        /*
+        const inputElement = document.createElement('input');
+        inputElement.classList.add('edit-input');
+        */
         const checkbox_elem = document.createElement('button');
         checkbox_elem.classList.add('checkbox');
         checkbox_elem.innerHTML = "✔︎";
@@ -110,34 +121,14 @@ class Scheduler {
         
         block.appendChild(checkbox_elem);
         block.appendChild(content_elem);
+        //block.appendChild(inputElement);
         block.appendChild(delete_elem);
 
         this.todoList.appendChild(block);
     }
 
     complete(nodeID) {
-        /*
-        let idx = Number(nodeID);
-        let newNode = []
-
-        if (this.parent[idx].isComplete == false) { // 인덱스로 접근하면 안 된다.
-            newNode = this.get_all_node().map(param => {
-                if (param.id == nodeID) {
-                    return param = {id : param.id, content : param.content, isComplete : true};
-                } else {
-                    return param
-                } 
-            });
-        } else {
-            newNode = this.get_all_node().map(param => {
-                if (param.id == nodeID) {
-                    return param = {id : param.id, content : param.content, isComplete : false};
-                } else {
-                    return param
-                } 
-            });
-        }
-        */
+        // id 값을 당기면서 최신화하지 않는 이상, 인덱스 접근법은 무리가 있다.
         const newNode = this.get_all_node().map(param => (param.id == nodeID) ? {...param, isComplete : !param.isComplete} : param)
         
         this.set_node(newNode);
@@ -145,14 +136,31 @@ class Scheduler {
         this.updateLeftItem();
     }
 
-    dblclick(e, nodeID) { // 이거 어케 만드노,,update 기능
-        const updateContent = e.target.innerHTML;
-        
+    dblclick(e, nodeID) {
+        const parentElement = e.target.parentElement; // 상위 태그를 가져온다.
+        // create input-box
         const addAttriInput = document.createElement('input');
-        addAttriInput.classList.add('edit-input'); // 기존에 만들어져 있던 것
-        addAttriInput.value = updateContent;
+        addAttriInput.classList.add('edit-input'); // css 속성 사용을 위해서 클래스 추가
+        addAttriInput.value = e.target.innerHTML; // 일단 기존의 내용을 가지고 있는다.
 
-        
+        addAttriInput.addEventListener('keydown', (e)=>{
+            if (e.key == "Enter") {
+                if (e.target.value != "") {
+                    this.updateNode(e.target.value, nodeID);
+                }
+                else { alert("내용을 입력해주세요."); }
+            }
+        });
+
+        parentElement.appendChild(addAttriInput);
+    }
+
+    updateNode(data, nodeID) {
+        const newNode = this.get_all_node().map(param => (param.id == nodeID) ? {...param, content : data} : param)
+    
+        this.set_node(newNode);
+        this.bifurcation();
+        this.updateLeftItem();
     }
 
     delete_node(nodeID) {
@@ -187,6 +195,13 @@ class Scheduler {
         if (this.get_all_node().length != this.get_all_node().filter(param => param.isComplete == true).length)
             return true;
         return false;
+    }
+
+    clearParant() {
+        const blank = []
+        this.set_node(blank);
+        this.bifurcation();
+        this.updateLeftItem();
     }
 
     updateLeftItem() {
