@@ -6,8 +6,8 @@ def home(request):
     return render(request, 'index.html') # 요청이 들어올 때 index.html을 렌더링하는 함수
 '''
 
-def first(request):
-    return render(request, 'first.html')
+def home(request):
+    return render(request, 'home.html')
 
-def second(request):
-    return render(request, 'second.html')
+def about(request):
+    return render(request, 'about.html')

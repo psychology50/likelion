@@ -25,8 +25,8 @@ from myapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.first), # 아무것도 입력 안 한 default
-    path('second/', views.second),
+    path('', views.home, name='home'), # 아무것도 입력 안 한 default
+    path('about/', views.about, name='about'),
     path('products/', include('product.urls')),
     path('boards/', include('board.urls')),
 ]

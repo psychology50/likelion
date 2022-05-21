@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+# settings.py 까보기
+# (1) Staticfiles_dirs : static 파일이 어디에 위치해있는가?
+# (2) Static_url : static 파일을 제공할 경로
+# (3) Static_root : static 파일들을 복사하여 모아 놓을 경로
+
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp.apps.MyappConfig',
+    'product.apps.ProductConfig',
+    'board.apps.BoardConfig',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +125,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    os.path.join(BASE_DIR, 'board', 'static'), # 이렇게도 쓸 수 있다. 최근 1년까지는 이렇게 작성했었음.
+]
+
+STATIC_ROOT = os.path.join('staticfiles') # 실제 배포에선 runserver로 작동하는 것이 아니기 때문에, static 파일을 한 곳에 모을 필요가 있다.
+# python manage.py collectstatic
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
