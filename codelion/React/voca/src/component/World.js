@@ -10,7 +10,7 @@ export default function World(props) { // props는 억지로 바꾸면 안 된�
     function changeName() {
         const newName = name === "Mike" ? "Jane" : "Mike";
         setName(newName);
-        setAge(age + 1)
+        setAge(age + 1);
     }
 
     return (

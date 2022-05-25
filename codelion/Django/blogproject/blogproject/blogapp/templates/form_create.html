@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>django form을 이용한 새 글 작성 페이지</h1>
+    <form action="" method="POST" enctype="multipart/form-data"> <!-- enctype : 파일 업로드시 지정해주어야 한다. -->
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }} <!-- django form으로 만든 것은 form.as_table 이나 form.as_p 처럼 이용해서 원하는 테이블로 감싸져 있도록 만들 수 있다.-->
+        </table>
+        <input type="submit" value="새 글 생성하기">
+    </form>
+</body>
+</html>

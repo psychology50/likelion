@@ -32,5 +32,6 @@ export default function Hello() {
             <World age={10}/>
             <World age={20}/>
             <World age={30}/>
-        </div>); // div로 감싸지 않으면 에러가 난다. JSX는 하나의 태그만 return 할 수 있음
+        </div>
+    ); // div로 감싸지 않으면 에러가 난다. JSX는 하나의 태그만 return 할 수 있음
 }

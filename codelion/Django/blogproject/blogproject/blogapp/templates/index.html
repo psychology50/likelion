@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    안녕하세요, {{ user.username }}님!
+    <a href="{% url 'logout' %}">로그아웃</a>
+    {% else %}
+    아직 로그인이 되지 않았습니다.
+    <a href="{% url 'login' %}">로그인</a>
+    {% endif %}<br>
+
+    <h1>My Simple Blog</h1>
+
+    <!-- QuerySet : DB로부터 전달받은 객체 목록 -->
+    <!-- 127.0.0.1:8000/detail/primaryKey -->
+    {% for post in posts %}
+        <a href="{% url 'detail' post.id %}"><p><h3>제목 : {{ post.title }}</h3></p></a> <!-- detail에게 post.id를 같이 전송한다. -->
+        <p><h4>작성 날짜 : {{ post.date }}</h4></p>
+    {% endfor %} <br><br>
+
+    <!--
+    ### html form을 이용한 데이터 저장 ... models.py
+    <a href="{% url 'new' %}">HTML을 이용한 새 글 작성</a><br>
+
+    ### Django form을 이용한 데이터 저장 ... forms.py
+    <a href="{% url 'formcreate' %}">Django Form을 이용한 새 글 작성</a><br> -->
+
+     <!-- Model Form을 이용한 데이터 저장 ... forms.py -->
+     {% if user.is_authenticated %}
+    <a href="{% url 'modelformcreate' %}">Model Form을 이용한 새 글 작성</a><br>
+    {% endif %}
+</body>
+</html>
