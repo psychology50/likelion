@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ToDos</title>
+    <link rel="stylesheet", type="text/css" href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <i class="fab fa-accusoft"></i>
+            <a href="/">영남대학교 멋쟁이사자처럼 10기 백엔드 트랙 투두리스트 프로젝트</a>
+        </div>
+
+        <ul class="navbar__menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/calender">Calendar</a></li>
+            <li><a href="https://www.codelion.net/">Code Lion</a></li>
+            <li><a href="https://azure-quill-f9c.notion.site/10-083e267021f0475ca7c43e6527d71513">YU Notion</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+    </nav>
+    <section id="container">
+        {% block content %}
+        {% endblock %}
+    </section>
+    <!-- <script src="clock.js"></script> -->
+    {% comment %} <script src="todo.js"></script> {% endcomment %}
+
+    <!-- <script src="todo_simple.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block home %}
+<div class="center">
+    <h1>Signup</h1>
+    <form id="sign_form" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="text_filed">
+            <input name = "username">
+            <span></span>
+            <label>Email</label>
+        </div>
+        <div class="text_filed">
+            <input name = "password1" type="password" >
+            <span></span>
+            <label>Password</label>
+        </div>
+        <div class="text_filed">
+            <input name = "password2" type="password" >
+            <span></span>
+            <label>Password-RE</label>
+        </div>
+        <input type="submit" value="회원가입">
+        <div class="signup">
+            이미 회원인가요? <a href="{% url 'login' %}">로그인</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

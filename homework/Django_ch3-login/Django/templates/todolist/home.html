@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrapper">
+        <h1 class="todo-title">T O D O</h1>
+        <div class="todo-container">
+            <div class="input-form">
+                <button class="complete-all-btn">🦁</button>
+                <input type="text" class="todo-input" placeholder="할 일을 입력하세요!">
+                <button class="enter">⏎</button>
+            </div>
+
+            <ul class="todo-list">
+                <!-- <li class="todo-item">
+                    <button class="checkbox">✔︎</button>
+                    <div class="content">할일1</div>
+                    <button class="delBtn">✕</button>
+                </li>
+                <li class="todo-item checked">
+                    <button class="checkbox">✔︎</button>
+                    <div class="content">할일2</div>
+                    <button class="delBtn">✕</button>
+                </li> -->
+            </ul>
+            <div class="todo-top">
+                <div class="left-items">오늘 할 일이 0개 남았습니다</div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

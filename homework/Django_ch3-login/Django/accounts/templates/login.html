@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Login</title>
+{% endblock %}
+
+{% block home %}
+<div class="center">
+    <h1>Login</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="text_filed">
+            <input name = "Username">
+            <span></span>
+            <label>Email</label>
+        </div>
+        <div class="text_filed">
+            <input type="password" name = "Password">
+            <span></span>
+            <label>Password</label>
+        </div>
+        <div class="pass">비밀번호를 잊으셨나요?</div>
+        <input type="submit" value="로그인">
+        <div class="signup">
+            회원이 아닌가요? <a href="{% url 'signup' %}">회원가입</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
