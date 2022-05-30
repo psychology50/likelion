@@ -34,7 +34,7 @@ class FreePost(models.Model):
 class FreeComment(models.Model): # ORM
     comment = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)
+    post = models.ForeignKey(FreePost, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.comment

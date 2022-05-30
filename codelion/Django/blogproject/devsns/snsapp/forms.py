@@ -39,7 +39,7 @@ class CommentForm(forms.ModelForm):
 class FreePostForm(forms.ModelForm):
     class Meta:
         model = FreePost
-        fields = '__all__'
+        fields = ['title', 'body']
 
     def __init__(self, *args, **kwargs):
         super(FreePostForm, self).__init__(*args, **kwargs)

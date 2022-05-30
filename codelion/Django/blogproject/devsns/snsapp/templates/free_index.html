@@ -8,7 +8,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        <h6 class="m-0 font-weight-bold text-primary">자유게시판</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -21,11 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for post in posts %}
+                    {% for post in freeposts %}
                     <tr>
                         <td><a href="{% url 'freedetail' post.id %}">{{ post.title }}></a></td>
                         <td>{{ post.date }}</td>
-                        <td>익명</td>
+                        <td>{{ post.author.username }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -33,10 +33,12 @@
         </div>
     </div>
 </div>
-<a href="{% url 'freepostCreate' %}" class="btn btn-primary btn-icon-split">
+{% if user.is_authenticated %}
+<a href="{% url 'freepostcreate' %}" class="btn btn-primary btn-icon-split">
     <span class="icon text-white-50">
         <i class="fas fa-flag"></i>
     </span>
     <span class="text">글쓰기</span>
 </a>
+{% endif %}
 {% endblock %}

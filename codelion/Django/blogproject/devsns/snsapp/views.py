@@ -46,7 +46,9 @@ def freepostCreate(request):
     if request.method == 'POST' or request.method == 'FILES':
         form = FreePostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            unfinished = form.save(commit=False)
+            unfinished.author = request.user
+            unfinished.save()
             return redirect('freehome')
     else:
         form = FreePostForm()
