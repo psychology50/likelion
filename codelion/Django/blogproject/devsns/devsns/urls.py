@@ -31,4 +31,7 @@ urlpatterns = [
     path('freepostcreate/', views.freepostCreate, name='freepostcreate'),
     path('freedetail/<int:post_id>/', views.freedetail, name='freedetail'),
     path('new_freecomment/<int:post_id>/', views.new_freecomment, name='new_freecomment'),
+
+    path('accounts/', include('allauth.urls'), name='accounts'),
 ]
+

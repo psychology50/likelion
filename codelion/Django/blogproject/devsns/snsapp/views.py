@@ -2,11 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CommentForm, PostForm, FreePostForm, FreeCommentForm
 from .models import Post, FreePost
 
+from django.core.paginator import Paginator # 개체를 분할시켜줌
+
 # Create your views here.
 
 def home(request):
     #posts = Post.objects.all()
     posts = Post.objects.filter().order_by('-date')
+
+    paginator = Paginator(posts, 5) # 객체, 끊어내는 개수
+    pageNum = request.GET.get('page') # 끊은 객체들을 dict타입으로 저장했다가 pageNumber로써 값을 조회할 수 있게 함
+    posts = paginator.get_page(pageNum)
+
     return render(request, 'index.html', {'posts':posts})
 
 def detail(request, post_id):
