@@ -55,8 +55,13 @@ const result = {
     "ESTJ": {"animal": "기린", "explain": "기린 설명", "img": "lion.jpg"},
     "ESFJ": {"animal": "고릴라", "explain": "고릴라 설명", "img": "lion.jpg"},
     "ENFJ": {"animal": "카피바라", "explain": "카피바라 설명", "img": "lion.jpg"},
-    "ENTJ": {"animal": "호랑이", "explain": "호랑이 설명", "img": "lion.jpg"}
+    "ENTJ": {
+        "animal": "호랑이", 
+        "explain": "호랑이 설명", 
+        "img": "lion.jpg"
+    }
 }
+
 
 let num = 1;
 let mbti = '';
@@ -71,19 +76,19 @@ titleBtn.addEventListener('click', ()=>{
 
 aBtn.addEventListener('click', ()=>{
     switch(type.innerHTML){
-        case 'EI' : 
+        case 'EI' :
             let e = parseInt(EI.value);
             EI.setAttribute('value', e+1);
             break;
-        case 'SN' :
+        case 'SN':
             let s = parseInt(SN.value);
             SN.setAttribute('value', s+1);
             break;
-        case 'TF' :
+        case 'TF':
             let t = parseInt(TF.value);
             TF.setAttribute('value', t+1);
             break;
-        case 'JP' :
+        case 'JP':
             let j = parseInt(JP.value);
             JP.setAttribute('value', j+1);
             break;
@@ -95,23 +100,29 @@ bBtn.addEventListener('click', ()=>{
     updateQuestion();
 });
 
-function updateQuestion() {
-    if (num == 13) {
+function updateQuestion(){
+    if(num == 13){
         questionContainer.style.display = 'none';
         resultContainer.style.display = 'block';
 
-        (EI.value > 2 ? mbti += 'E' : mbti += 'I');
-        (SN.value > 2 ? mbti += 'S' : mbti += 'N');
-        (TF.value > 2 ? mbti += 'T' : mbti += 'F');
-        (JP.value > 2 ? mbti += 'J' : mbti += 'P');
+        (EI.value > 2 ? mbti+='E' : mbti+='I');
+        (SN.value > 2 ? mbti+='S' : mbti+='N');
+        (TF.value > 2 ? mbti+='T' : mbti+='F');
+        (JP.value > 2 ? mbti+='J' : mbti+='P');
 
         MBTI.innerHTML = mbti;
         explain.innerHTML = result[mbti].explain;
         image.setAttribute('src', result[mbti].img);
-    } else {
-        pro.setAttribute('style', `width : calc(100/12*${num}%)`);
-        // `` 빽틱 연산자가 아니면 ${} 를 사용하지 못한다.
-        // 이걸 안 하면 ''를 쓰고 + num + 형태로 추가해야 한다.
+
+        // if(EI.value > 2){
+        //     mbti += 'E';
+        // }
+        // else{
+        //     mbti += 'I';
+        // }
+    }
+    else{
+        pro.setAttribute('style', `width : calc(100/12*${num}%);`);
         question.innerHTML = q[num].title;
         type.innerHTML = q[num].type;
         aBtn.innerHTML = q[num].A;
