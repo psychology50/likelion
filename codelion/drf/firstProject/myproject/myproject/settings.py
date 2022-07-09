@@ -39,11 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+
+    'allauth',
+    'allauth.socialaccount',
+    'allauth.account',
+    'rest_auth',
+    'rest_framework.authtoken',
+    'rest_auth.registration',
+
     'blog',
     'blog_api',
     'users',
     'corsheaders',
+
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -147,11 +157,13 @@ CORS_ORIGIN_WHITELIST = (
 # Custom user model
 AUTH_USER_MODEL = "users.NewUser"
 
+REST_USE_JWT = True
+
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5), # access token 수명
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), # refresh token 수명
+    'ROTATE_REFRESH_TOKENS': False, # access token이 만료되어 다시 요청할 때, refresh token도 재발급할 것인가?
+    'BLACKLIST_AFTER_ROTATION': True, # True면 기존의 refresh token은 blacklist가 된다.
     'UPDATE_LAST_LOGIN': False,
 
     'ALGORITHM': 'HS256',
@@ -162,7 +174,7 @@ SIMPLE_JWT = {
     'JWK_URL': None,
     'LEEWAY': 0,
 
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_TYPES': ('Bearer', 'JWT'),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
@@ -177,4 +189,14 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+# SITE_ID = 1
+
+# ACCOUNT_EMAIL_VERIFICATION = "none"
+# ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_ADAPTER = 'users.adapter.CustomAccountAdapter'
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.serializers.RegisterUserSerializer',
 }

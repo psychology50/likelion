@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+# Register
 class CustomAccountManger(BaseUserManager):
     def create_superuser(self, email, user_name, first_name, password, **other_fields):
         other_fields.setdefault('is_staff', True)
@@ -26,12 +27,13 @@ class CustomAccountManger(BaseUserManager):
                           first_name=first_name, **other_fields)
         user.set_password(password)
         user.save()
-    
+
 class NewUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150, blank=True)
     start_date = models.DateTimeField(default=timezone.now)
+    profile_image = models.ImageField(blank=True, null=True) # Form에서 비어있고, DB에 ''로 저장하는 것 허용
     about = models.TextField(_('about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True) # False면 email을 확인하기 전까진 비활성화 상태
