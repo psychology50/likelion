@@ -20,24 +20,24 @@ class CustomUserCreate(APIView):
         if reg_serializer.is_valid():
             newuser = reg_serializer.save()
             # create token
-            # token = TokenObtainPairSerializer.get_token(newuser)
-            # refresh_token = str(token)
-            # access_token = str(token.access_token)
+            token = TokenObtainPairSerializer.get_token(newuser)
+            refresh_token = str(token)
+            access_token = str(token.access_token)
 
             response = Response(
                 {
                     "user": reg_serializer.data,
                     "message": "register success",
-                    # "token": {
-                    #     "access": access_token,
-                    #     "refresh": refresh_token,
-                    # },
+                    "token": {
+                        "access": access_token,
+                        "refresh": refresh_token,
+                    },
                 },
                 status=status.HTTP_201_CREATED,
             )
 
-            # response.set_cookie("access", access_token, httponly=True)
-            # response.set_cookie("refresh", refresh_token, httponly=True)
+            response.set_cookie("access", access_token, httponly=True)
+            response.set_cookie("refresh", refresh_token, httponly=True)
             if newuser:
                 return response
         return Response(reg_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

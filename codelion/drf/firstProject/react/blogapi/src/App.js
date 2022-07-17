@@ -61,7 +61,7 @@ useEffect(() => {
           setisAuthenticated(false)
         }
         // Refresh Token 발급 받아 token의 만료 시간 연장
-        fetch('http://localhost:8000/refresh/', {
+        fetch('http://localhost:8000/token/refresh/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
